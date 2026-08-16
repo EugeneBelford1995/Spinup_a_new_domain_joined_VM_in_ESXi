@@ -40,7 +40,7 @@ Prep-VM -VMName $VMName
 
 Start-Sleep -Seconds 60
 Start-VM $VMName
-Start-Sleep -Seconds 120
+Start-Sleep -Seconds 300
 
 . .\Config-NIC.ps1
 
@@ -52,6 +52,7 @@ $secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
 $InitialCredObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
 
 Config-NIC -VMName $VMName -HostOctet $HostOctet -GuestCred $InitialCredObject
+Start-Sleep -Seconds 60
 
 . .\Join-Domain.ps1
 Add-VMToDomain -VMName $VMName -DomainName $DomainName -DomainUser $DomainUser -DomainPassword $DomainPassword
